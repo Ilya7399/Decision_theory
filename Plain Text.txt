@@ -13,7 +13,7 @@ void main() {
         C[i] = rand() % 1000 + 1;
         cout << A[i] << ' ' << C[i] << endl;
     }
-
+    cout << "\n\n";
     int **arrRatio = new int*[N];
     for (int i = 0; i < N;i++) {
         arrRatio[i] = new int[N];
@@ -23,10 +23,21 @@ void main() {
             arrRatio[i][j] = C[i] / A[j];
         }
     }
+    for (int i = 0; i < N;i++) {
+        for (int j = 0; j < N;j++) {
+            cout << arrRatio[i][j] << "\t";
+        }
+        cout << "\n";
+    }
 
     int row, col = 0;
     int comparison = 0;
     int* arr = new int[N];
+    int* arrRow = new int[N];
+    int* arrCol = new int[N];
+    int takeObject=0;
+    int takeObjectRow = 0;
+    int takeObjectCol = 0;
     for (int i = 0; i < N;i++) {
         for (int j = 0; j < N;j++) {
             if (arrRatio[j][i] > comparison)
@@ -37,17 +48,28 @@ void main() {
             }
         }
         arr[i] = comparison;
-    }
-
-
-
-
-    for (int i = 0; i < N;i++) {
-        for (int j = 0; j < N;j++) {
-            cout<<arrRatio[i][j]<<"\t";
+        arrRow[i] = row;
+        arrCol[i] = col;
+        if (arr[i] > takeObject) {
+            takeObject = arr[i];
+            takeObjectRow = row;
+            takeObjectCol = col;
         }
-        cout << "\n";
+        comparison = 0;
     }
+    cout << "\n\n";
+    for (int i = 0; i < N;i++) {
+        cout << arr[i] << "\t" << arrRow[i] << "\t" << arrCol[i] << "\n";
+    }
+    cout << "\n\n"<<takeObject<<"\t"<<takeObjectRow<<"\t"<<takeObjectCol << "\n\n";
+
+
+    
+
+
+
+
+
 
 
 
