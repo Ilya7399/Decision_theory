@@ -1,0 +1,59 @@
+#include <iostream>
+using namespace std;
+
+void main() {
+    setlocale(LC_ALL, "Russian");
+    srand(time(NULL));
+    const int N = 10;
+    int B = 200, A[N], C[N], X[N], tmpX[N];
+    long tmpB, FC = 0, tmpF;
+
+    for (int i = 0; i < N; i++) {
+        A[i] = rand() % 100 + 1;
+        C[i] = rand() % 1000 + 1;
+        cout << A[i] << ' ' << C[i] << endl;
+    }
+
+    int **arrRatio = new int*[N];
+    for (int i = 0; i < N;i++) {
+        arrRatio[i] = new int[N];
+    }
+    for (int i = 0; i < N;i++) {
+        for (int j = 0; j < N;j++) {
+            arrRatio[i][j] = C[i] / A[j];
+        }
+    }
+
+    int row, col = 0;
+    int comparison = 0;
+    int* arr = new int[N];
+    for (int i = 0; i < N;i++) {
+        for (int j = 0; j < N;j++) {
+            if (arrRatio[j][i] > comparison)
+            {
+                comparison = arrRatio[j][i];
+                row = j;
+                col = i;
+            }
+        }
+        arr[i] = comparison;
+    }
+
+
+
+
+    for (int i = 0; i < N;i++) {
+        for (int j = 0; j < N;j++) {
+            cout<<arrRatio[i][j]<<"\t";
+        }
+        cout << "\n";
+    }
+
+
+
+    for (int i = 0; i < N;i++) {
+        delete[] arrRatio[i];
+    }
+    delete[] arrRatio;
+    delete[] arr;
+}
