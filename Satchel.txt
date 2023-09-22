@@ -1,0 +1,86 @@
+#include <iostream>
+using namespace std;
+
+void main() {
+    setlocale(LC_ALL, "Russian");
+    srand(time(NULL));
+    const int N = 10;
+    int B = 200, A[N], C[N], X[N];
+    int r = 0;
+    for (int i = 0; i < N; i++) {
+        A[i] = rand() % 100 + 1;
+        C[i] = rand() % 1000 + 1;
+        cout << A[i] << ' ' << C[i] << endl;
+    }
+    cout << "\n\n";
+    int** arrRatio = new int* [N];
+    for (int i = 0; i < N;i++) {
+        arrRatio[i] = new int[N];
+    }
+    int* arr = new int[N];
+    int* arrRow = new int[N];
+    int* arrCol = new int[N];
+
+    while (B > 0) {
+        int row = 0;
+        int col = 0;
+        int comparison = 0;
+        int takeObject = 0;
+        int takeObjectRow = 0;
+        int takeObjectCol = 0;
+        for (int i = 0; i < N;i++) {
+            for (int j = 0; j < N;j++) {
+                arrRatio[i][j] = C[i] / A[j];
+            }
+        }
+        for (int i = 0; i < N;i++) {
+            for (int j = 0; j < N;j++) {
+                cout << arrRatio[i][j] << "\t";
+            }
+            cout << "\n";
+        }
+        for (int i = 0; i < N;i++) {
+            for (int j = 0; j < N;j++) {
+                if (arrRatio[i][j] > comparison)
+                {
+                    comparison = arrRatio[i][j];
+                    row = i;
+                    col = j;
+                }
+            }
+            arr[i] = comparison;
+            arrRow[i] = row;
+            arrCol[i] = col;
+            if (arr[i] > takeObject) {
+                takeObject = arr[i];
+                takeObjectRow = row;
+                takeObjectCol = col;
+            }
+            comparison = 0;
+        }
+        cout << "\n\n";
+        for (int i = 0; i < N;i++) {
+            cout << arr[i] << "\t" << arrRow[i] << "\t" << arrCol[i] << "\n";
+        }
+        cout << "\n\n" << takeObject << "\t" << takeObjectRow << "\t" << takeObjectCol << "\n\n";
+        X[r] = takeObjectCol;
+        r++;
+        B -= A[takeObjectCol];
+        C[takeObjectRow] = 0;
+        A[takeObjectCol] = 999;
+    }
+
+    cout << "\n\n" << "Кладем в рюкзак следующие предметы:\t";
+    for (int i = 0; i < r;i++) {
+        cout << X[i] << "\t";
+    }
+    cout << endl;
+
+    for (int i = 0; i < N;i++) {
+        delete[] arrRatio[i];
+    }
+    delete[] arrRatio;
+    delete[] arr;
+    delete[] arrRow;
+    delete[] arrCol;
+}
