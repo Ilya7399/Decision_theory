@@ -6,6 +6,7 @@ void main() {
     srand(time(NULL));
     const int N = 10;
     int B = 200, A[N], C[N], X[N];
+    int r = 0;
     for (int i = 0; i < N; i++) {
         A[i] = rand() % 100 + 1;
         C[i] = rand() % 1000 + 1;
@@ -61,15 +62,24 @@ void main() {
             cout << arr[i] << "\t" << arrRow[i] << "\t" << arrCol[i] << "\n";
         }
         cout << "\n\n" << takeObject << "\t" << takeObjectRow << "\t" << takeObjectCol << "\n\n";
-        X[0] = takeObjectCol;
+        X[r] = takeObjectCol;
+        r++;
         B -= A[takeObjectCol];
         C[takeObjectRow] = 0;
         A[takeObjectCol] = 999;
     }
+
+    cout << "\n\n"<<"Кладем в рюкзак следующие предметы:\t";
+    for (int i = 0; i < r;i++) {
+        cout << X[i] << "\t";
+    }
+    cout << endl;
 
     for (int i = 0; i < N;i++) {
         delete[] arrRatio[i];
     }
     delete[] arrRatio;
     delete[] arr;
+    delete[] arrRow;
+    delete[] arrCol;
 }
