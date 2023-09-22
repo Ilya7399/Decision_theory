@@ -13,7 +13,7 @@ void main() {
         cout << A[i] << ' ' << C[i] << endl;
     }
     cout << "\n\n";
-    int **arrRatio = new int*[N];
+    int** arrRatio = new int* [N];
     for (int i = 0; i < N;i++) {
         arrRatio[i] = new int[N];
     }
@@ -21,8 +21,9 @@ void main() {
     int* arrRow = new int[N];
     int* arrCol = new int[N];
 
-    while (B>0) {
-        int row, col = 0;
+    while (B > 0) {
+        int row = 0;
+        int col = 0;
         int comparison = 0;
         int takeObject = 0;
         int takeObjectRow = 0;
@@ -69,7 +70,7 @@ void main() {
         A[takeObjectCol] = 999;
     }
 
-    cout << "\n\n"<<"Кладем в рюкзак следующие предметы:\t";
+    cout << "\n\n" << "Кладем в рюкзак следующие предметы:\t";
     for (int i = 0; i < r;i++) {
         cout << X[i] << "\t";
     }
