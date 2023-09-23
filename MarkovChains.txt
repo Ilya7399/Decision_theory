@@ -39,27 +39,24 @@ void main() {
         for (int j = 0;j < row;j++) {
             double el = 0;
             for (int k = 0;k < row;k++) {
-                el += arr[j][k] * arr[k][0];
+                el += arr[0][k] * arr[k][j];
             }
             arr1[0][j] = el;
         }
         for (int j = 0;j < row;j++) {
             double el = 0;
             for (int k = 0;k < row;k++) {
-                el += arr[j][k] * arr[k][1];
+                el += arr[1][k] * arr[k][j];
             }
             arr1[1][j] = el;
         }
         for (int j = 0;j < row;j++) {
             double el = 0;
             for (int k = 0;k < row;k++) {
-                el += arr[j][k] * arr[k][2];
+                el += arr[2][k] * arr[k][j];
             }
             arr1[2][j] = el;
         }
-
-
-
         cout << "\n\n";
         for (int i = 0;i < row;i++) {
             for (int j = 0;j < col;j++) {
@@ -67,4 +64,39 @@ void main() {
             }
             cout << "\n";
         }
+
+
+        double** arr2 = new double* [row];
+        for (int i = 0;i < row;i++) {
+            arr2[i] = new double[col];
+        }
+        for (int j = 0;j < row;j++) {
+            double el = 0;
+            for (int k = 0;k < row;k++) {
+                el += arr1[0][k] * arr[k][j];
+            }
+            arr2[0][j] = el;
+        }
+        for (int j = 0;j < row;j++) {
+            double el = 0;
+            for (int k = 0;k < row;k++) {
+                el += arr1[1][k] * arr[k][j];
+            }
+            arr2[1][j] = el;
+        }
+        for (int j = 0;j < row;j++) {
+            double el = 0;
+            for (int k = 0;k < row;k++) {
+                el += arr1[2][k] * arr[k][j];
+            }
+            arr2[2][j] = el;
+        }
+        cout << "\n\n";
+        for (int i = 0;i < row;i++) {
+            for (int j = 0;j < col;j++) {
+                cout << arr2[i][j] << "\t";
+            }
+            cout << "\n";
+        }
+
 }
