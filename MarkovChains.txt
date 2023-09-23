@@ -4,6 +4,9 @@ using namespace std;
 void main() {
     setlocale(LC_ALL, "Russian");
     srand(time(NULL));
+    cout << "При увеличении степени, в которую возводится матрица, элементы ее строк стремятся к равенству. Введите число, соответствующее степени: ";
+    int degree;
+    cin >> degree;
     int rowCol = 3;
     double** arr = new double*[rowCol];
     for (int i = 0;i < rowCol;i++) {
@@ -25,6 +28,7 @@ void main() {
             arr[randElement][i] +=lack;
         }
     }
+    cout << "\n\n";
     for (int i = 0;i < rowCol;i++) {
         for (int j = 0;j < rowCol;j++) {
             cout <<arr[i][j]<<"\t";
@@ -67,8 +71,7 @@ void main() {
             cout << "\n";
         }
 
-        int o = 2;
-        while (o>0) {
+        while (degree>0) {
             for (int j = 0;j < rowCol;j++) {
                 double el = 0;
                 for (int k = 0;k < rowCol;k++) {
@@ -126,6 +129,19 @@ void main() {
                 }
                 cout << "\n";
             }
-            o--;
+            degree--;
         }
+
+        for (int i = 0; i < rowCol;i++) {
+            delete[] arr[i];
+        }
+        for (int i = 0; i < rowCol;i++) {
+            delete[] arr1[i];
+        }
+        for (int i = 0; i < rowCol;i++) {
+            delete[] arr2[i];
+        }
+        delete[] arr;
+        delete[] arr1;
+        delete[] arr2;
 }
