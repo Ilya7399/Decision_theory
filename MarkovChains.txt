@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+
+void main() {
+    setlocale(LC_ALL, "Russian");
+    srand(time(NULL));
+    int row = 3;
+    int col = 3;
+    double** arr = new double*[row];
+    for (int i = 0;i < row;i++) {
+        arr[i] = new double[col];
+    }
+    for (int i = 0;i < row;i++) {
+        for (int j = 0;j < col;j++) {
+            arr[j][i] = (rand() % 10 + 1) / 10.f;
+        }
+        while ((arr[0][i] + arr[1][i] + arr[2][i]) > 1) {
+                for (int j = 0;j < col;j++) {
+                    arr[j][i] = (rand() % 10 + 1) / 10.f;
+                }
+        }
+        if ((arr[0][i] + arr[1][i] + arr[2][i]) < 1) {
+            double belowOne = arr[0][i] + arr[1][i] + arr[2][i];
+            double lack = 1 - belowOne;
+            int randElement = rand() % 2;
+            arr[randElement][i] +=lack;
+        }
+    }
+
+    for (int i = 0;i < row;i++) {
+        for (int j = 0;j < col;j++) {
+            cout <<arr[i][j]<<"\t";
+        }
+        cout << "\n";
+    }
+}
