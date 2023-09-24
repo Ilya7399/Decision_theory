@@ -1,0 +1,55 @@
+#include <iostream>
+using namespace std;
+
+void main() {
+    setlocale(LC_ALL, "Russian");
+    srand(time(NULL));
+    cout << "Введите размерность квадратной матрицы: ";
+    int rowCol;
+    cin >> rowCol;
+    int** arr = new int* [rowCol];
+    for (int i = 0;i < rowCol;i++) {
+        arr[i] = new int[rowCol];
+    }
+    for (int i = 0;i < rowCol;i++) {
+        for (int j = 0;j < rowCol;j++) {
+            arr[i][j] = rand() % 100 - 50;
+        }
+    }
+    cout << "\n\n";
+    for (int i = 0;i < rowCol;i++) {
+        for (int j = 0;j < rowCol;j++) {
+            cout<<arr[i][j]<<"\t";
+        }
+        cout << "\n";
+    }
+    cout << "\n\n";
+    int *maxMinArr = new int[rowCol];
+    for (int i = 0;i < rowCol;i++) {
+        int min = 50;
+        for (int j = 0;j < rowCol;j++) {
+            if (arr[i][j] < min) {
+                min = arr[i][j];
+            }
+        }
+        maxMinArr[i] = min;
+    }
+    int* minMaxArr = new int[rowCol];
+    for (int i = 0;i < rowCol;i++) {
+        int max = -50;
+        for (int j = 0;j < rowCol;j++) {
+            if (arr[j][i] > max) {
+                max = arr[j][i];
+            }
+        }
+        minMaxArr[i] = max;
+    }
+    cout << "\n\n";
+    for (int i = 0;i < rowCol;i++) {
+        cout << maxMinArr[i] << "\t";
+    }
+    cout << "\n\n";
+    for (int i = 0;i < rowCol;i++) {
+        cout << minMaxArr[i] << "\t";
+    }
+}
