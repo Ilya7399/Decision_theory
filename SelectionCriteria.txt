@@ -32,6 +32,8 @@ void main() {
         }
         cout << "\n";
     }
+    const int strategys = 5;
+    int mostFrequentStrategy[5];
     int* maxMinArr = new int[row];
     int* rowMaxArr = new int[row];
     for (int i = 0;i < row;i++) {
@@ -56,6 +58,7 @@ void main() {
             maxMin = maxMinArr[i];
         }
     }
+    mostFrequentStrategy[0] = maxMin;
     cout << "\n\n"<<"Оптимальное решение согласно критерию Вальда: "<<maxMin<<"\n\n\n\n";
     int* colMaxArr = new int[col];
     for (int i = 0;i < col;i++) {
@@ -109,6 +112,7 @@ void main() {
             indexMax = i + 1;
         }
     }
+    mostFrequentStrategy[1] = indexMax;
     cout << " - Согласно критерию Сэвиджа определяем минимальный риск: " << min << " - Тогда оптимальной стратегией будет \n"<<indexMax;
     cout<<"\n\n\n\nЧтобы воспользоваться критерием Гурвица, определим коэффициент оптимистичности равным 0,5:\n\n";
     double* hurwitzsArr = new double[row];
@@ -122,6 +126,7 @@ void main() {
             indexMax = i+1;
         }
     }
+    mostFrequentStrategy[2] = indexMax;
     cout << "\n\nMax: " << max << " - Значит оптимальной стратегией будет " << indexMax<<"\n\n";
     double q = 1.0 / row;
     double* laplacesArr = new double[row];
@@ -144,6 +149,7 @@ void main() {
             indexMax = i + 1;
         }
     }
+    mostFrequentStrategy[3] = indexMax;
     cout << "\n\nMax: " << max << " - Значит оптимальной стратегией будет " << indexMax << "\n\n";
     cout << "\n\nСгенерируем случайные вероятности природы:\n\n";
     double* probabilitiesArr = new double[col];
@@ -153,7 +159,7 @@ void main() {
     for (int i = 0;i < col;i++) {
        cout<< probabilitiesArr[i]<<"\t";
     }
-    double* bayessArr = new double;
+    double* bayessArr = new double[row];
     double sumOfCompose = 0;
     for (int i = 0;i < row;i++) {
         for (int j = 0;j < col;j++) {
@@ -170,5 +176,25 @@ void main() {
             indexMax = i+1;
         }
     }
+    mostFrequentStrategy[4] = indexMax;
     cout << "\n\nMax: " << max << " - Значит оптимальной стратегией по критерию Байеса будет " << indexMax << "\n\n";
+    for (int i = 0;i < strategys;i++) {
+        cout << mostFrequentStrategy[i] << "\t";
+    }
+    for (int i = 0; i < row;i++) {
+        delete[] arr[i];
+    }
+    for (int i = 0; i < row;i++) {
+        delete[] savagesArr[i];
+    }
+    delete[] arr;
+    delete[] maxMinArr;
+    delete[] rowMaxArr;
+    delete[] colMaxArr;
+    delete[] savagesArr;
+    delete[] maxArr;
+    delete[] hurwitzsArr;
+    delete[] probabilitiesArr;
+    delete[] laplacesArr;
+    delete[] bayessArr;
 }
