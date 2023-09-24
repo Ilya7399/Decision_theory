@@ -70,4 +70,11 @@ void main() {
         cout << "Поскольку maxMin != minMax, игра решается в чистых стратегиях";
     }
     cout << "\n\n";
+
+    for (int i = 0; i < rowCol;i++) {
+        delete[] arr[i];
+    }
+    delete[] arr;
+    delete[] maxMinArr;
+    delete[] minMaxArr;
 }
