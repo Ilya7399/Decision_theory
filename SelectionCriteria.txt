@@ -51,4 +51,36 @@ void main() {
         }
     }
     cout << "\n\n"<<"Оптимальное решение согласно критерию Вальда: "<<maxMin<<"\n\n";
+    int* colMaxArr = new int[col];
+    for (int i = 0;i < col;i++) {
+        int max = 0;
+        for (int j = 0;j < row;j++) {
+            if (arr[j][i] > max) {
+                max = arr[j][i];
+            }
+        }
+        colMaxArr[i] = max;
+    }
+    cout << "\n\n";
+    for (int i = 0;i < col;i++) {
+        cout << colMaxArr[i] << "\t";
+    }
+    int** savagesArr = new int*[row];
+    for (int i = 0;i < col;i++) {
+        savagesArr[i] = new int[col];
+    }
+    int k = 0;
+    for (int i = 0;i < col;i++) {
+        for (int j = 0;j < row;j++) {
+            savagesArr[j][i] = colMaxArr[k]-arr[j][i];
+        }
+        k++;
+    }
+    cout << "\n\n";
+    for (int i = 0;i < row;i++) {
+        for (int j = 0;j < col;j++) {
+            cout <<savagesArr[i][j] << "\t";
+        }
+        cout << "\n";
+    }
 }
