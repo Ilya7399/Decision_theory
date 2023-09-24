@@ -162,7 +162,13 @@ void main() {
         bayessArr[i] = sumOfCompose;
     }
     cout << "\n\n";
+    max = 0;
     for (int i = 0;i < row;i++) {
         cout << bayessArr[i] << "\t";
+        if (bayessArr[i]>max) {
+            max = bayessArr[i];
+            indexMax = i+1;
+        }
     }
+    cout << "\n\nMax: " << max << " - Значит оптимальной стратегией по критерию Байеса будет " << indexMax << "\n\n";
 }
