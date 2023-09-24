@@ -177,10 +177,20 @@ void main() {
         }
     }
     mostFrequentStrategy[4] = indexMax;
-    cout << "\n\nMax: " << max << " - Значит оптимальной стратегией по критерию Байеса будет " << indexMax << "\n\n";
+    cout << "\n\nMax: " << max << " - Значит оптимальной стратегией по критерию Байеса будет " << indexMax << "\n\n\n\nОптимальные стратегии от каждого критерия:\n\n";
     for (int i = 0;i < strategys;i++) {
         cout << mostFrequentStrategy[i] << "\t";
     }
+    int optimalSolution = 0;
+    for (int i = 0;i < strategys;i++) {
+        for (int j = 0;j < strategys;j++) {
+            if (mostFrequentStrategy[i] == mostFrequentStrategy[j]) {
+                optimalSolution = mostFrequentStrategy[i];
+            }
+        }
+    }
+    cout << "\n\nРезультат решения по разным критериям чаще других рекомендует: " << optimalSolution << "\n\n";
+
     for (int i = 0; i < row;i++) {
         delete[] arr[i];
     }
