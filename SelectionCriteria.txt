@@ -111,13 +111,14 @@ void main() {
     double* hurwitzsArr = new double[row];
     double m = 0.5;
     double max = 0;
+    int intMax = 0;
     for (int i = 0;i < row;i++) {
         hurwitzsArr[i] = (m* maxMinArr[i])+((1.0 - m)* rowMaxArr[i]);
         cout << hurwitzsArr[i] << "\t";
         if (hurwitzsArr[i] > max) {
             max = hurwitzsArr[i];
+            intMax = hurwitzsArr[i];
         }
     }
-    int integer = max+0.9;
-    cout << "\n\nMax: " << max << " - Значит оптимальной стратегией будет " << integer;
+    cout << "\n\nMax: " << max << " - Значит оптимальной стратегией будет " << intMax<<"\n\n";
 }
