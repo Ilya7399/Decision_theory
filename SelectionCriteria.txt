@@ -145,4 +145,24 @@ void main() {
         }
     }
     cout << "\n\nMax: " << max << " - Значит оптимальной стратегией будет " << indexMax << "\n\n";
+    cout << "\n\nСгенерируем случайные вероятности природы:\n\n";
+    double* probabilitiesArr = new double[col];
+    for (int i = 0;i < col;i++) {
+        probabilitiesArr[i] = (rand() % 49 +1.0)/100.0;
+    }
+    for (int i = 0;i < col;i++) {
+       cout<< probabilitiesArr[i]<<"\t";
+    }
+    double* bayessArr = new double;
+    double sumOfCompose = 0;
+    for (int i = 0;i < row;i++) {
+        for (int j = 0;j < col;j++) {
+            sumOfCompose += arr[i][j] * probabilitiesArr[j];
+        }
+        bayessArr[i] = sumOfCompose;
+    }
+    cout << "\n\n";
+    for (int i = 0;i < row;i++) {
+        cout << bayessArr[i] << "\t";
+    }
 }
