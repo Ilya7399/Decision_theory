@@ -61,7 +61,7 @@ void main() {
         }
         colMaxArr[i] = max;
     }
-    cout << "\n\n";
+    cout << "\n\nМаксимальные элементы каждого столбца:"<<"\n\n";
     for (int i = 0;i < col;i++) {
         cout << colMaxArr[i] << "\t";
     }
@@ -76,11 +76,30 @@ void main() {
         }
         k++;
     }
-    cout << "\n\n";
+    cout << "\n\nВоспользовавшись критерием Сэвиджа построим матрицу риска:\n\n";
     for (int i = 0;i < row;i++) {
         for (int j = 0;j < col;j++) {
             cout <<savagesArr[i][j] << "\t";
         }
         cout << "\n";
     }
+    int* maxArr = new int[row];
+    for (int i = 0;i < row;i++) {
+        int max = 0;
+        for (int j = 0;j < col;j++) {
+            if (savagesArr[i][j] > max) {
+                max = savagesArr[i][j];
+            }
+        }
+        maxArr[i] = max;
+    }
+    cout << "\n\n";
+    int min = 10;
+    for (int i = 0;i < row;i++) {
+        cout << maxArr[i] << "\t";
+        if (maxArr[i] < min) {
+            min = maxArr[i];
+        }
+    }
+    cout << " - Согласно критерию Сэвиджа определяем минимальный риск: "<<min<<"\n\n";
 }
