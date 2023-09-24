@@ -52,4 +52,22 @@ void main() {
     for (int i = 0;i < rowCol;i++) {
         cout << minMaxArr[i] << "\t";
     }
+    int maxMin = -50;
+    int minMax = 50;
+    for (int i = 0;i < rowCol;i++) {
+        if (maxMinArr[i]>maxMin) {
+            maxMin = maxMinArr[i];
+        }
+        else if (minMaxArr[i] < minMax) {
+            minMax=minMaxArr[i];
+        }
+    }
+    cout << "\n\n\n" << "Максимин: " << maxMin << "\tМинимакс: " << minMax <<"\n\n";
+    if (maxMin == minMax) {
+        cout << "Поскольку maxMin = minMax, игра с седловой точкой и решается в чистых стратегиях";
+    }
+    else {
+        cout << "Поскольку maxMin != minMax, игра решается в чистых стратегиях";
+    }
+    cout << "\n\n";
 }
